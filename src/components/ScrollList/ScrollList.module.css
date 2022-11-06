@@ -1,0 +1,41 @@
+.Scroll {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none;
+    margin: 10rem;
+    padding: auto;
+    height: 400px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0 0 0 1rem;
+    scroll-padding-left: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.Scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.Scroll,
+.List {
+    padding: 0 1rem 0 0;
+    scroll-snap-align: start;
+    /* or: center */
+    scroll-snap-stop: always;
+}
+
+.Scroll,
+.List,
+.Card {
+    display: block;
+}
+
+.Card:nth-child(even) {
+    background-color: blue;
+}
+
+.Card:nth-child(odd) {
+    background-color: aqua;
+}
