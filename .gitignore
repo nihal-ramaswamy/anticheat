@@ -30,4 +30,4 @@ dist/
 lib/
 include/
 
-checkRunningProcesses-*
+checkRunningProcesses*
