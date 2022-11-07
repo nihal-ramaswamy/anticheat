@@ -14,9 +14,8 @@ const App = () => {
       setState("fetching");
 
       for (let tryNumber = 0; ; ++tryNumber) {
-        const blackListedApps = await getOpenBlackListedApps(tryNumber);
+        const blackListedApps = await getOpenBlackListedApps();
         if (blackListedApps?.status === "error") {
-          console.log(blackListedApps.error);
         } else {
           setOpenBlackListedApps(blackListedApps?.data);
           setState("data");

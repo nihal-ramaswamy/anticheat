@@ -1,14 +1,18 @@
 import strapi from "../config/axios.config";
 
-export const getBlackListedApps = async () => {
-  let response = {};
-  await strapi.get<{ data?: any }>("black-listed-apps")
-    .then(data => {
-      response = { data: data.data.data, status: "ok" };
-    })
-    .catch(err => {
-      response = { error: err, status: "error" };
-    });
+interface responseData {
+  data?: any;
+  error?: any;
+  status: string;
+};
 
-  return response as { data?: any, status: string, error?: any };
+export const getBlackListedApps = async () => {
+  try {
+
+    const res = await strapi.get("black-listed-apps");
+    return { data: res.data.data, status: "ok" } as responseData;
+
+  } catch (err: any) {
+    return { error: err, status: "error" } as responseData;
+  }
 };

@@ -6,16 +6,27 @@ interface IScrollList {
 
 
 const ScrollList = (props: IScrollList) => {
+
+    const render = () => {
+        if (props.data === undefined) {
+            return <></>;
+        } else {
+            return (
+                <div className={classes.Scroll}>
+                    {props.data.map((li, idx) => {
+                        return (
+                            <div className={classes.Card} key={idx}>
+                                <li className={classes.List} key={idx}>{li}</li>
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
+    }
+
     return (
-        <div className={classes.Scroll}>
-            {props.data.map((li, idx) => {
-                return (
-                    <div className={classes.Card}>
-                    <li className={classes.List} key={idx}>{li}</li>
-                    </div>
-                )
-            })}
-        </div>
+        <>{render()}</>
     );
 };
 

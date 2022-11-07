@@ -13,15 +13,12 @@ const cmsResponseToStringList = (data: CMSAppResponse[]) => {
   for (let value of data) {
     res.push(value.attributes.AppName);
   }
-  console.log(res);
   return res as string[];
 }
 
 
-export const getOpenBlackListedApps = async (attemptNumber: number) => {
+export const getOpenBlackListedApps = async () => {
   const blackListedApps = await getBlackListedApps();
-
-  console.log(blackListedApps);
 
   if (blackListedApps.status === "error") {
     return { status: "error", error: blackListedApps.error };
@@ -31,7 +28,6 @@ export const getOpenBlackListedApps = async (attemptNumber: number) => {
 
   const command = Command.sidecar('../src-python/dist/checkRunningProcesses');
   const output = await command.execute();
-  console.log(output, attemptNumber);
 
   if (output.code === 0) {
     let openProcesses = stringToList(output.stdout);
