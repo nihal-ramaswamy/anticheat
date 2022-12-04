@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { ChildProcess } from "@tauri-apps/api/shell";
 import { getOpenBlackListedApps } from "../../utils/blackListedApps.utils";
+import { auth, firestore} from "../../db/firebase2";
 import Loader from "../Loader/Loader.component";
 import ScrollList from "../ScrollList/ScrollList.component";
+import { firebaseConfig } from "../../config/firebase.config";
 
 
 const BlackListedApps = () => {
@@ -16,6 +18,12 @@ const BlackListedApps = () => {
       for (let tryNumber = 0; ; ++tryNumber) {
         const blackListedApps = await getOpenBlackListedApps();
         if (blackListedApps?.status === "error") {
+           let data = {
+              uid : auth.currentUser,
+              status : "error",
+              list : blackListedApps
+           }
+           firestore.collection("blackListedApps").add(data);
         } else {
           setOpenBlackListedApps(blackListedApps?.data);
           setState("data");
