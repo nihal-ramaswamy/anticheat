@@ -13,9 +13,11 @@ const App = () => {
       return <LogIn />
     } else if (testId == "") {
       return <TestId />
-    } else {
+    } else if (user != "" && testId != "") {
       return <BlackListedApps />
     }
+
+    return <LogIn />
   }
 
   return (

@@ -7,7 +7,7 @@ const TestId = () => {
   const [testID, setTestID] = useState<string>("");
 
 
-  const handleTestIdInput = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const handleTestIdInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTestID((e.target as HTMLInputElement).value);
   }
 
@@ -27,7 +27,7 @@ const TestId = () => {
         className="block border border-grey-light w-full p-3 rounded mb-4"
         name="testId"
         placeholder="testId"
-        onClick={(e) => handleTestIdInput(e)}
+        onChange={(e) => handleTestIdInput(e)}
       />
       <button
         type="submit"

@@ -13,7 +13,6 @@ const SignUp = () => {
     if (email == null || password == null) {
       return;
     }
-    console.log(email, password);
     const res = await signInWithEmailPassword(email, password);
     if (res.status === "error") {
       console.log(res);
@@ -22,11 +21,11 @@ const SignUp = () => {
     dispatch(setUser(res.data?.uid));
   };
 
-  const handleEmailInput = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const handleEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail((e.target as HTMLInputElement).value);
   }
 
-  const handlePasswordInput = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword((e.target as HTMLInputElement).value);
   }
 
@@ -40,14 +39,14 @@ const SignUp = () => {
             className="block border border-grey-light w-full p-3 rounded mb-4"
             name="email"
             placeholder="Email"
-            onClick={(e) => handleEmailInput(e)}
+            onChange={(e) => handleEmailInput(e)}
           />
           <input
             type="password"
             className="block border border-grey-light w-full p-3 rounded mb-4"
             name="password"
             placeholder="Password"
-            onClick={(e) => handlePasswordInput(e)}
+            onChange={(e) => handlePasswordInput(e)}
           />
           <button
             type="submit"
