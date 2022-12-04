@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChildProcess } from "@tauri-apps/api/shell";
 import { getOpenBlackListedApps } from "../../utils/blackListedApps.utils";
-import { auth, firestore} from "../../db/firebase2";
 import Loader from "../Loader/Loader.component";
 import ScrollList from "../ScrollList/ScrollList.component";
 import { useSelector } from "react-redux";
